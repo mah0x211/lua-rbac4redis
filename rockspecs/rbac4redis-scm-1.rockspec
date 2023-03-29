@@ -15,9 +15,11 @@ dependencies = {
 build = {
     type = "builtin",
     modules = {
+        ['rbac4redis.set'] = "lib/set.lua",
         ['rbac4redis.encode'] = "lib/encode.lua",
         ['rbac4redis.decode'] = "lib/decode.lua",
         ['rbac4redis.merge'] = "lib/merge.lua",
         ['rbac4redis.pathsplit'] = "lib/pathsplit.lua",
+        ['rbac4redis.redis'] = "lib/redis.lua",
     },
 }
