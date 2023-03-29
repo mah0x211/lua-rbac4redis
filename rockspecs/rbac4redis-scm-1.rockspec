@@ -17,5 +17,6 @@ build = {
     modules = {
         ['rbac4redis.encode'] = "lib/encode.lua",
         ['rbac4redis.decode'] = "lib/decode.lua",
+        ['rbac4redis.merge'] = "lib/merge.lua",
     },
 }
