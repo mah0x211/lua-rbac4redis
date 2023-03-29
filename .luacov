@@ -1,0 +1,7 @@
+codefromstrings = false
+runreport = true
+deletestats = true
+modules = {
+    ["rbac4redis.encode"] = "lib/encode.lua",
+    ["rbac4redis.decode"] = "lib/decode.lua",
+}
