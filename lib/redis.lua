@@ -35,6 +35,22 @@ local function KEYS(key)
     return keys
 end
 
+local function DEL(...)
+    local keys = {
+        ...,
+    }
+    local n = 0
+    for i = 1, select('#', ...) do
+        local key = keys[i]
+        assert(key == nil or type(key) == 'string')
+        if key and DATA[key] then
+            DATA[key] = nil
+            n = n + 1
+        end
+    end
+    return n
+end
+
 local function HSET(key, ...)
     local obj = DATA[key]
     if not obj then
@@ -112,19 +128,37 @@ local function HMGET(key, ...)
     return values
 end
 
+local function HLEN(key)
+    local obj = DATA[key]
+    if not obj then
+        return 0
+    end
+
+    local n = 0
+    for _ in pairs(obj) do
+        n = n + 1
+    end
+    return n
+end
+
 local function HINCRBY(key, field, incr)
+    assert(type(incr) == 'number')
+
     local obj = DATA[key]
     if not obj then
         obj = {
-            [field] = incr,
+            [field] = tostring(incr),
         }
         DATA[key] = obj
         return incr
     elseif obj[field] == nil then
-        obj[field] = incr
+        obj[field] = tostring(incr)
         return incr
-    elseif type(obj[field]) == 'number' then
-        obj[field] = obj[field] + incr
+    end
+
+    local n = tonumber(obj[field])
+    if n then
+        obj[field] = tostring(n + incr)
         return obj[field]
     end
 
@@ -138,10 +172,13 @@ end
 
 local commands = {
     KEYS = KEYS,
+    DEL = DEL,
     HSET = HSET,
+    HDEL = HDEL,
     HGETALL = HGETALL,
     HMGET = HMGET,
     HINCRBY = HINCRBY,
+    HLEN = HLEN,
     FLUSHALL = FLUSHALL,
 }
 
