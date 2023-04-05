@@ -48,6 +48,7 @@ jobs:
       run: |
         luarocks install luacov
         luarocks install testcase
+        luarocks install lua-cjson
     -
       name: Install
       run: |

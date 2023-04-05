@@ -40,8 +40,6 @@ function testcase.pathsplit()
         '/',
     })
 
-    local dump = require('dump')
-
     -- test that split an empty segments
     output = {}
     assert(pathsplit('/foo///bar//baz/', function(ss, s, head, tail)
