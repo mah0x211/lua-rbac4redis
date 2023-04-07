@@ -6,6 +6,7 @@ modules = {
     ["rbac4redis.del"] = "lib/del.lua",
     ["rbac4redis.list"] = "lib/list.lua",
     ["rbac4redis.search"] = "lib/search.lua",
+    ["rbac4redis.dump"] = "lib/list.lua",
     ["rbac4redis.encode"] = "lib/encode.lua",
     ["rbac4redis.decode"] = "lib/decode.lua",
     ["rbac4redis.merge"] = "lib/merge.lua",
